@@ -7,11 +7,6 @@
 #include <libc.h>
 #include "server.h"
 
-
-void accept_connections(int fd);
-
-int create_tcp_socket();
-
 int run_server() {
     int fd = create_tcp_socket();
     if(bind_addr(fd, 8080)) {
