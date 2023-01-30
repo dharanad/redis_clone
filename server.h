@@ -18,7 +18,10 @@ void handle_client_conn(int client_fd);
  * Wrapper function over bind syscall to bind input port number to localhost
  * */
 int bind_addr(int fd, int port);
-void accept_connections(int fd);
+/*
+ * Start the server by accepting connection on the server fd
+ * */
+void start(int fd);
 /*
  * Wrapper function around socket syscall to create a TCP server socket
  * */;

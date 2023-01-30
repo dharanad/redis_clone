@@ -17,7 +17,7 @@ int run_server() {
         perror("listen");
         exit(-2);
     }
-    accept_connections(fd);
+    start(fd);
     return 0;
 }
 
@@ -30,7 +30,7 @@ int create_tcp_socket() {// Create a TCP/IP socket. Ref: https://beej.us/
     return fd;
 }
 
-void accept_connections(int fd) {
+void start(int fd) {
     while (TRUE) {
         struct sockaddr_in client_addr = {};
         socklen_t socklen = sizeof(client_addr);
