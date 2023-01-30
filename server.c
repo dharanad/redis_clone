@@ -21,7 +21,7 @@ int run_server() {
     return 0;
 }
 
-int create_tcp_socket() {// Create a TCP/IP socket. Ref: https://beej.us/
+int create_tcp_socket() {// Create a TCP/IP socket. Ref: https://beej.us/guide/bgnet/html/split/index.html
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     int val = 1;
     // configure socket options
