@@ -4,9 +4,8 @@
 
 #include <errno.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <assert.h>
-#include <strings.h>
-#include <stdio.h>
 #include "protocol.h"
 #include "utils.h"
 
