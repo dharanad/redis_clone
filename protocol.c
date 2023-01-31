@@ -3,6 +3,9 @@
 //
 
 #include <errno.h>
+#include <stdlib.h>
+#include <libc.h>
+#include <assert.h>
 #include "protocol.h"
 #include "utils.h"
 
