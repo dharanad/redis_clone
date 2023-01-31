@@ -1,6 +1,5 @@
-#include <stdio.h>
+#include <cstdio>
 #include "server.h"
-
 
 int main() {
     printf("Hello, World!\n");

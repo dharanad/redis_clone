@@ -3,7 +3,7 @@
 //
 
 #include <libc.h>
-#include <errno.h>
+#include <cerrno>
 
 void msg(const char *msg) {
     fprintf(stderr, "%s\n", msg);
