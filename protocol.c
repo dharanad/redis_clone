@@ -4,6 +4,7 @@
 
 #include <errno.h>
 #include "protocol.h"
+#include "utils.h"
 
 int32_t read_full(int fd, char* buf, size_t n) {
     while (n > 0) {
@@ -40,11 +41,7 @@ int32_t one_request(int conn_fd) {
     // read first four byte to rbuf
     int32_t err = read_full(conn_fd, rbuf, 4);
     if (err) {
-        if (errno == 0) {
-
-        } else {
-
-        }
+        msg(errno == 0 ? "EOF" : "read() error");
         return err;
     }
 
@@ -52,13 +49,13 @@ int32_t one_request(int conn_fd) {
     uint32_t len = 0;
     memcpy(&len, rbuf, 4);
     if (len > k_max_msg) {
-
+        msg("too long");
         return -1;
     }
 
     err = read_full(conn_fd, &rbuf[4], len);
     if (err) {
-
+        msg("read() error");
         return err;
     }
     rbuf[4 + len] = '\0'; // terminate the string with null

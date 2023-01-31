@@ -26,3 +26,5 @@ void start(int fd);
  * Wrapper function around socket syscall to create a TCP server socket
  * */;
 int create_tcp_socket();
+
+void set_fd_nb(int fd);
