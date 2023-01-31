@@ -4,7 +4,7 @@
 
 #ifndef REDIS_CLONE_SERVER_H
 #define REDIS_CLONE_SERVER_H
-#define TRUE 1
+
 #endif //REDIS_CLONE_SERVER_H
 /*
  * High level function to create a TCP Server

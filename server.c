@@ -6,6 +6,7 @@
 #include <netinet/tcp.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <mach/boolean.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include "server.h"
