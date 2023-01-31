@@ -4,7 +4,7 @@
 
 #include <sys/socket.h>
 #include <netinet/tcp.h>
-#include <stdlib.h>
+#include <libc.h>
 #include <errno.h>
 #include "server.h"
 #include "protocol.h"
