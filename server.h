@@ -9,7 +9,7 @@
 /*
  * High level function to create a TCP Server
  * */
-int run_server();
+void run_server();
 /*
  * Function to handler client connection
  * */

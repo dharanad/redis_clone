@@ -7,7 +7,7 @@
 #include <libc.h>
 #include "server.h"
 
-int run_server() {
+void run_server() {
     int fd = create_tcp_socket();
     if(bind_addr(fd, 8080)) {
         perror("bind_addr");
@@ -18,7 +18,6 @@ int run_server() {
         exit(-2);
     }
     start(fd);
-    return 0;
 }
 
 int create_tcp_socket() {// Create a TCP/IP socket. Ref: https://beej.us/guide/bgnet/html/split/index.html
