@@ -6,6 +6,7 @@
 #include <netinet/tcp.h>
 #include <libc.h>
 #include "server.h"
+#include "protocol.h"
 
 void run_server() {
     int fd = create_tcp_socket();
@@ -38,7 +39,12 @@ void start(int fd) {
             perror("accept");
             continue;
         }
-        handle_client_conn(conn_fd);
+        while (TRUE) {
+            int32_t err = one_request(conn_fd);
+            if (err) {
+                break;
+            }
+        }
         close(conn_fd);
     }
 }
@@ -49,16 +55,4 @@ int bind_addr(int fd, int port) {
     addr.sin_port = ntohs(port);
     addr.sin_addr.s_addr = ntohl(0); // wildcard address i.e 0.0.0.1
     return bind(fd, (const struct sockaddr*) &addr, sizeof(addr));
-}
-
-void handle_client_conn(int client_fd) {
-    char buf[64] = {}; // 64 bytes buffer
-    size_t n = read(client_fd, buf, sizeof(buf) - 1);
-    if (n < 0) {
-        perror("handle_client_conn");
-        return;
-    }
-    printf("client says: %s\n", buf);
-    char* reply = "foo reply\n";
-    write(client_fd, reply, strlen(reply));
 }
