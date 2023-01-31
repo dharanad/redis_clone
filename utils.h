@@ -8,4 +8,5 @@
 #endif //REDIS_CLONE_UTILS_H
 
 void msg(const char *msg);
+
 void die(const char *msg);

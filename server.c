@@ -12,7 +12,7 @@
 
 void run_server() {
     int fd = create_tcp_socket();
-    if(bind_addr(fd, 8080)) {
+    if (bind_addr(fd, 8080)) {
         die("bind_addr error");
     }
     if (listen(fd, SOMAXCONN)) {
@@ -34,7 +34,7 @@ void start(int fd) {
     while (TRUE) {
         struct sockaddr_in client_addr = {};
         socklen_t socklen = sizeof(client_addr);
-        int conn_fd = accept(fd, (struct sockaddr*) &client_addr, &socklen);
+        int conn_fd = accept(fd, (struct sockaddr *) &client_addr, &socklen);
         if (conn_fd < 0) {
             msg("accept() error");
             continue;
@@ -55,7 +55,7 @@ int bind_addr(int fd, int port) {
     addr.sin_family = AF_INET;
     addr.sin_port = ntohs(port);
     addr.sin_addr.s_addr = ntohl(0); // wildcard address i.e 0.0.0.1
-    return bind(fd, (const struct sockaddr*) &addr, sizeof(addr));
+    return bind(fd, (const struct sockaddr *) &addr, sizeof(addr));
 }
 
 void set_fd_nb(int fd) {
