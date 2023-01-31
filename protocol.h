@@ -2,6 +2,10 @@
 // Created by Dharan Aditya on 31/01/23.
 //
 
+#include <stdlib.h>
+#include <libc.h>
+#include <assert.h>
+
 #ifndef REDIS_CLONE_PROTOCOL_H
 #define REDIS_CLONE_PROTOCOL_H
 
