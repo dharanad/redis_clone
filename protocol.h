@@ -2,6 +2,8 @@
 // Created by Dharan Aditya on 31/01/23.
 //
 
+#include "conn.h"
+
 #ifndef REDIS_CLONE_PROTOCOL_H
 #define REDIS_CLONE_PROTOCOL_H
 
@@ -30,3 +32,4 @@ int32_t read_full(int fd, char *buf, size_t n);
 int32_t write_all(int fd, char *buf, size_t n);
 
 int32_t one_request(int conn_fd);
+bool try_one_request(Conn *conn);

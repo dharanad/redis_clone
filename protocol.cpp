@@ -71,3 +71,36 @@ int32_t one_request(int conn_fd) {
     memcpy(&wbuf[4], reply, len);
     return write_all(conn_fd, wbuf, 4 + len);
 }
+
+bool try_one_request(Conn *conn) {
+    // try parsing request from the buffer
+    if (conn->rbuf_size < 4) {
+        return 4;
+    }
+    uint32_t len = 0;
+    memcpy(&len, &conn->rbuf[0], 4);
+    if (len > K_MAX_MSG) {
+        msg("too long");
+        conn->state = STATE_END;
+        return false;
+    }
+    if (4 + len > conn->rbuf_size) {
+        return false;
+    }
+    printf("client says: %s\n", &conn->rbuf[4]);
+
+    // echoing in the response
+    memcpy(&conn->wbuf[0], &len, 4);
+    memcpy(&conn->wbuf[4], &conn->rbuf[4], len);
+    conn->wbuf_size = 4 + len;
+
+//    size_t remain = conn->rbuf_size - 4 - len;
+//    if (remain) {
+//        memmove(conn->rbuf, &conn->rbuf[4 + len], remain);
+//    }
+//    conn->rbuf_size = remain;
+
+    conn->state = STATE_RES;
+    state_res(conn);
+    return conn->state = STATE_REQ;
+}
