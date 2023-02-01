@@ -16,15 +16,15 @@ enum {
 };
 
 struct Conn {
-    int fd;
-    uint32_t state;
+    int fd = -1;
+    uint32_t state = STATE_REQ;
     // read buffer
-    size_t rbuf_size;
+    size_t rbuf_size = 0;
     uint8_t rbuf[4 + K_MAX_MSG];
     // write buffers
-    size_t wbuf_size;
-    size_t wbuf_sent;
+    size_t wbuf_size = 0;
+    size_t wbuf_sent = 0;
     uint8_t wbuf[4 + K_MAX_MSG];
 };
 
-#endif //REDIS_CLONE_EL_H
+#endif //REDIS_CLONE_EL_

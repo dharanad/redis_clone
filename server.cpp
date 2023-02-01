@@ -57,20 +57,3 @@ int bind_addr(int fd, int port) {
     addr.sin_addr.s_addr = ntohl(0); // wildcard address i.e 0.0.0.1
     return bind(fd, (const struct sockaddr *) &addr, sizeof(addr));
 }
-
-void set_fd_nb(int fd) {
-    errno = 0;
-    int flags = fcntl(fd, F_GETFL, 0);
-    if (errno) {
-        die("fcntl error");
-        return;
-    }
-    flags |= O_NONBLOCK;
-
-    errno = 0;
-    fcntl(fd, flags, 0);
-    if (errno) {
-        die("fcntl error");
-        return;
-    }
-}

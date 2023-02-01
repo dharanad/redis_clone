@@ -14,3 +14,20 @@ void die(const char *msg) {
     fprintf(stderr, "[%d] %s\n", err, msg);
     abort();
 }
+
+void set_fd_nb(int fd) {
+    errno = 0;
+    int flags = fcntl(fd, F_GETFL, 0);
+    if (errno) {
+        die("fcntl error");
+        return;
+    }
+    flags |= O_NONBLOCK;
+
+    errno = 0;
+    fcntl(fd, flags, 0);
+    if (errno) {
+        die("fcntl error");
+        return;
+    }
+}

@@ -10,3 +10,5 @@
 void msg(const char *msg);
 
 void die(const char *msg);
+
+void set_fd_nb(int fd);

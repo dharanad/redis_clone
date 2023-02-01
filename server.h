@@ -31,5 +31,3 @@ void start(int fd);
  * */;
 
 int create_tcp_socket();
-
-void set_fd_nb(int fd);
